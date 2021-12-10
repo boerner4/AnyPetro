@@ -1,0 +1,164 @@
+------------------
+Forward Operator
+------------------
+[ModelNameStart]
+Debye Decomposition
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	ApplyC1C2
+rho0	1e-3		1e4			5e2				1e2				10		0
+m01		1e-6		1			1e-3			1e-3			1		1
+m02		1e-6		1			1e-3			1e-3			1		1
+m03		1e-6		1			1e-3			1e-3			1		1
+m04		1e-6		1			1e-3			1e-3			1		1
+m05		1e-6		1			1e-3			1e-3			1		1
+m06		1e-6		1			1e-3			1e-3			1		1
+m07		1e-6		1			1e-3			1e-3			1		1
+m08		1e-6		1			1e-3			1e-3			1		1
+m09		1e-6		1			1e-3			1e-3			1		1
+m10		1e-6		1			1e-3			1e-3			1		1
+m11		1e-6		1			1e-3			1e-3			1		1
+m12		1e-6		1			1e-3			1e-3			1		1
+m13		1e-6		1			1e-3			1e-3			1		1
+m14		1e-6		1			1e-3			1e-3			1		1
+m15		1e-6		1			1e-3			1e-3			1		1
+m16		1e-6		1			1e-3			1e-3			1		1
+m17		1e-6		1			1e-3			1e-3			1		1
+m18		1e-6		1			1e-3			1e-3			1		1
+m19		1e-6		1			1e-3			1e-3			1		1
+m20		1e-6		1			1e-3			1e-3			1		1
+m21		1e-6		1			1e-3			1e-3			1		1
+m22		1e-6		1			1e-3			1e-3			1		1
+m23		1e-6		1			1e-3			1e-3			1		1
+m24		1e-6		1			1e-3			1e-3			1		1
+m25		1e-6		1			1e-3			1e-3			1		1
+m26		1e-6		1			1e-3			1e-3			1		1
+m27		1e-6		1			1e-3			1e-3			1		1
+m28		1e-6		1			1e-3			1e-3			1		1
+m29		1e-6		1			1e-3			1e-3			1		1
+m30		1e-6		1			1e-3			1e-3			1		1
+[ModelParametersEnd]
+
+[AuxiliaryStatementsStart]
+nTau   = 30;
+limTau = log10([1e-5 1e4]);
+tau    = logspace(limTau(1),limTau(2),nTau)';
+[AuxiliaryStatementsEnd]
+
+[AdditionalInputStart]
+tau
+[AdditionalInputEnd]
+
+[SampleSpecificsStart]
+frequency
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(1./(mod(1).*(1-sum(mod(2:end).*(1-(1./(1+1i*2*pi*frequency*tau)))))))
+2			imag(1./(mod(1).*(1-sum(mod(2:end).*(1-(1./(1+1i*2*pi*frequency*tau)))))))
+[SyntheticDataCalculationEnd]
+------------------
+------------------
+
+ 
+------------------
+Starting inversion
+------------------
+2021-12-10_14-15-56
+------------------
+options:
+                 DataType: [70×1 double]
+                     Data: [70×1 double]
+                     Type: [70×1 double]
+                  UseData: [70×1 logical]
+                   Weight: [70×1 double]
+              description: {70×1 cell}
+                frequency: [70×1 double]
+                   FOfile: {58×1 cell}
+                  FOinput: @(options,i)[options.frequency(i)]
+                       FO: {1×2 cell}
+           transformation: 'Range'
+                ParaRange: [31×2 double]
+                  mod_ref: [31×1 double]
+    modelParameterWeights: [31×1 double]
+                     maxi: 10
+                     pert: 1.0000e-04
+                      tol: 1.0000e-05
+                  DataLog: 1
+              lambdaStore: 1.5262e-05
+                  mod_erg: [31×1 double]
+      AuxiliaryStatements: {3×1 cell}
+                 AddInput: {'tau'}
+
+
+Starting Gauss-Newton inversion
+Data residual norm:	9.12e+00
+Calculated lambda:	1.53e-05
+Objective function:	4.158672e+01
+
+Iteration: 1
+Line search: Step size	1.000000e+00
+Data norm:			4.763463e-01
+Model norm:			1.225793e-03
+Objective function:		4.775721e-01
+
+Iteration: 2
+Line search: Step size	1.000000e+00
+Data norm:			1.407412e-04
+Model norm:			1.245748e-03
+Objective function:		1.386489e-03
+
+Iteration: 3
+Line search: Step size	1.000000e+00
+Data norm:			4.575584e-05
+Model norm:			1.246813e-03
+Objective function:		1.292569e-03
+
+Iteration: 4
+Line search: Step size	1.000000e+00
+Data norm:			4.576284e-05
+Model norm:			1.246806e-03
+Objective function:		1.292569e-03
+
+Relative misfit change 4.592475e-09 is smaller than 1.000000e-05. Stopping.
+
+Data residual norm after 4 iterations:	9.57e-03
+Value of objective function:			1.292569e-03
+Lambda:							1.53e-05
+
+Inversion result:
+rho0	= 1.50e+02 +/- 1.23e-01
+m01	= 5.88e-04 +/- 9.22e-06
+m02	= 6.77e-04 +/- 4.74e-06
+m03	= 7.99e-04 +/- 6.27e-06
+m04	= 9.91e-04 +/- 7.64e-06
+m05	= 1.29e-03 +/- 8.98e-06
+m06	= 1.74e-03 +/- 1.18e-05
+m07	= 2.33e-03 +/- 1.56e-05
+m08	= 3.07e-03 +/- 2.02e-05
+m09	= 4.00e-03 +/- 2.61e-05
+m10	= 5.17e-03 +/- 3.34e-05
+m11	= 6.62e-03 +/- 4.23e-05
+m12	= 8.39e-03 +/- 5.27e-05
+m13	= 1.04e-02 +/- 6.42e-05
+m14	= 1.25e-02 +/- 7.60e-05
+m15	= 1.45e-02 +/- 8.65e-05
+m16	= 1.59e-02 +/- 9.44e-05
+m17	= 1.65e-02 +/- 9.79e-05
+m18	= 1.61e-02 +/- 9.58e-05
+m19	= 1.49e-02 +/- 8.91e-05
+m20	= 1.30e-02 +/- 7.94e-05
+m21	= 1.09e-02 +/- 6.84e-05
+m22	= 8.79e-03 +/- 6.22e-05
+m23	= 6.92e-03 +/- 5.79e-05
+m24	= 5.39e-03 +/- 4.70e-05
+m25	= 4.23e-03 +/- 4.54e-05
+m26	= 3.37e-03 +/- 6.42e-05
+m27	= 2.73e-03 +/- 8.80e-05
+m28	= 2.25e-03 +/- 1.09e-04
+m29	= 1.87e-03 +/- 1.27e-04
+m30	= 1.57e-03 +/- 1.41e-04
+ 
+2021-12-10_14-15-57
