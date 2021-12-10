@@ -1,0 +1,121 @@
+------------------
+Forward Operator
+------------------
+[ModelNameStart]
+Crushed Rocks
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name		lowerBound	upperBound	startingValue	referenceValue	weight	ApplyC1C2
+zone		1e-6		1e-4		1e-5			2.0e-5			1		0
+zoneFac		0.1			5			3.0				2				1		0
+PhiIntra	5e-3		3e-1		0.01			0.02			1		0
+m			1.66		2.6			2.0				2				1		0
+phiFac		1			3			2.0				2				1		0
+ImSigma		4			14			12				10				1		0
+Splug		0.05		3			0.1				0.3				1		0
+[ModelParametersEnd]
+
+[AuxiliaryStatementsStart]
+theta_shell= @(mod,particleSize) min([1;(1-(1-mod(1)./(0.5*particleSize*1e-3)).^3)]) ;
+sigma_plug = @(mod,sigmaW,l,density) ( mod(3)        ^mod(4)).*(sigmaW) +(1+1i*l)*((10.^(-mod(6)))*mod(7)*       density*1e6* mod(3)        ^mod(4)*(1- mod(3)        )/ mod(3));
+sigma_shell= @(mod,sigmaW,l,density) ((mod(3)*mod(5))^mod(4)).*(sigmaW) +(1+1i*l)*((10.^(-mod(6)))*mod(7)*mod(2)*density*1e6*(mod(3)*mod(5))^mod(4)*(1-(mod(3)*mod(5)))/(mod(3)*mod(5)));
+sigma_ep   = @(sigma_c,sigma_a,theta_shell) sigma_c*((2*theta_shell*sigma_c+(3-2*theta_shell)*sigma_a)/((3-theta_shell)*sigma_c+theta_shell*sigma_a));
+F          = @(sigma_eff,sigma_w,sigma_i,PhiinterNeu) ((sigma_i-sigma_eff)/(sigma_i-sigma_w))*((sigma_w/sigma_eff).^(1/3))-PhiinterNeu;
+[AuxiliaryStatementsEnd]
+
+[SampleSpecificsStart]
+particleSize,PhiinterNeu,density,sigmaW,l
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(fsolve(@(x) F(x,sigmaW,sigma_ep(sigma_shell(mod,sigmaW,l,density),sigma_plug(mod,sigmaW,l,density),theta_shell(mod,particleSize)),PhiinterNeu),1e-3+1i*1e-5,optimset('Display','off')))
+2			imag(fsolve(@(x) F(x,sigmaW,sigma_ep(sigma_shell(mod,sigmaW,l,density),sigma_plug(mod,sigmaW,l,density),theta_shell(mod,particleSize)),PhiinterNeu),1e-3+1i*1e-5,optimset('Display','off')))
+3			theta_shell(mod,particleSize)*mod(2)*mod(7) + (1-theta_shell(mod,particleSize))*mod(7)
+4			theta_shell(mod,particleSize)*mod(5)*mod(3) + (1-theta_shell(mod,particleSize))*mod(3)
+[SyntheticDataCalculationEnd]
+------------------
+------------------
+
+ 
+------------------
+Starting inversion
+------------------
+2021-12-10_16-13-00
+------------------
+options:
+                 DataType: [30×1 double]
+                     Data: [30×1 double]
+              PhiinterNeu: [30×1 double]
+                     Type: [30×1 double]
+                  UseData: [30×1 logical]
+                   Weight: [30×1 double]
+                  density: [30×1 double]
+              description: {30×1 cell}
+                        l: [30×1 double]
+             particleSize: [30×1 double]
+                   sigmaW: [30×1 double]
+           total_porosity: [30×1 double]
+                   FOfile: {34×1 cell}
+      AuxiliaryStatements: {5×1 cell}
+                  FOinput: [function_handle]
+                       FO: {1×4 cell}
+           transformation: 'Range'
+                ParaRange: [7×2 double]
+                  mod_ref: [7×1 double]
+    modelParameterWeights: [7×1 double]
+                     maxi: 10
+                     pert: 1.0000e-04
+                      tol: 1.0000e-05
+                  DataLog: 1
+              lambdaStore: 5.1951e-05
+
+
+Starting Gauss-Newton inversion
+Data residual norm:	1.58e+01
+Calculated lambda:	5.20e-05
+Objective function:	3.380668e+00
+
+Iteration: 1
+Line search: Step size	1.000000e+00
+Data norm:			7.439764e-02
+Model norm:			1.009586e-03
+Objective function:		7.540722e-02
+
+Iteration: 2
+Line search: Step size	5.000000e-01
+Data norm:			5.500959e-03
+Model norm:			5.510264e-04
+Objective function:		6.051985e-03
+
+Iteration: 3
+Line search: Step size	1.000000e+00
+Data norm:			1.852111e-03
+Model norm:			3.882172e-04
+Objective function:		2.240328e-03
+
+Iteration: 4
+Breakdown in line search. Exit.
+
+Line search: Step size	9.536743e-07
+Data norm:			1.852111e-03
+Model norm:			3.882173e-04
+Objective function:		2.240328e-03
+
+Relative misfit change 6.479564e-08 is smaller than 1.000000e-05. Stopping.
+
+Data residual norm after 4 iterations:	5.49e-01
+Value of objective function:			2.240328e-03
+Lambda:							5.20e-05
+
+Inversion result:
+zone	= 3.45e-05 +/- 6.78e-06
+zoneFac	= 2.24e+00 +/- 1.33e-01
+PhiIntra	= 1.38e-01 +/- 9.45e-03
+m	= 1.87e+00 +/- 2.39e-01
+phiFac	= 2.15e+00 +/- 2.97e-01
+ImSigma	= 9.00e+00 +/- 1.87e-01
+Splug	= 1.60e+00 +/- 3.73e-02
+ 
+2021-12-10_16-13-02
