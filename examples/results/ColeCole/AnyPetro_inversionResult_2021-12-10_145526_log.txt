@@ -1,0 +1,104 @@
+------------------
+Forward Operator
+------------------
+[ModelNameStart]
+Cole Cole
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	applyC1C2
+rho0	1e-3		1e4 		5e2 			1e2				1	0
+m		1e-6		1			0.5				0.5				1	0
+tau		1e-7		1e6 		100				1				1	0
+c		1e-6		1			0.5				0.5				1	0
+[ModelParametersEnd]
+
+[SampleSpecificsStart]
+frequency
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(1/(mod(1)*(1-mod(2)*(1-1/(1+(1i*2*pi*frequency*mod(3))^mod(4))))))
+2			imag(1/(mod(1)*(1-mod(2)*(1-1/(1+(1i*2*pi*frequency*mod(3))^mod(4))))))
+[SyntheticDataCalculationEnd]
+------------------
+------------------
+
+ 
+------------------
+Starting inversion
+------------------
+2021-12-10_14-54-57
+------------------
+options:
+                 DataType: [70×1 double]
+                     Data: [70×1 double]
+                     Type: [70×1 double]
+                  UseData: [70×1 logical]
+                   Weight: [70×1 double]
+              description: {70×1 cell}
+                frequency: [70×1 double]
+                   FOfile: {21×1 cell}
+                  FOinput: [function_handle]
+                       FO: {1×2 cell}
+           transformation: 'Range'
+                ParaRange: [4×2 double]
+                  mod_ref: [4×1 double]
+    modelParameterWeights: [4×1 double]
+                     maxi: 10
+                     pert: 1.0000e-04
+                      tol: 1.0000e-05
+                  DataLog: 1
+              lambdaStore: 4.1962e-05
+                  mod_erg: [4×1 double]
+
+
+Starting Gauss-Newton inversion
+Data residual norm:	4.48e+00
+Calculated lambda:	4.20e-05
+Objective function:	1.004348e+01
+
+Iteration: 1
+Line search: Step size	1.000000e+00
+Data norm:			2.167179e+00
+Model norm:			1.493321e-04
+Objective function:		2.167329e+00
+
+Iteration: 2
+Line search: Step size	1.000000e+00
+Data norm:			1.807557e-02
+Model norm:			5.300358e-05
+Objective function:		1.812857e-02
+
+Iteration: 3
+Line search: Step size	1.000000e+00
+Data norm:			2.385395e-05
+Model norm:			4.749793e-05
+Objective function:		7.135188e-05
+
+Iteration: 4
+Line search: Step size	1.000000e+00
+Data norm:			1.383424e-09
+Model norm:			4.730627e-05
+Objective function:		4.730765e-05
+
+Iteration: 5
+Line search: Step size	1.000000e+00
+Data norm:			1.533461e-09
+Model norm:			4.730610e-05
+Objective function:		4.730763e-05
+
+Relative misfit change 4.896802e-07 is smaller than 1.000000e-05. Stopping.
+
+Data residual norm after 5 iterations:	5.54e-05
+Value of objective function:			4.730763e-05
+Lambda:							4.20e-05
+
+Inversion result:
+rho0	= 1.50e+02 +/- 4.93e-04
+m	= 2.00e-01 +/- 7.74e-07
+tau	= 1.00e+00 +/- 1.49e-05
+c	= 4.00e-01 +/- 1.06e-06
+ 
+2021-12-10_14-54-58
