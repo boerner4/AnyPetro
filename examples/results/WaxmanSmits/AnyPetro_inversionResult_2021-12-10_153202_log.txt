@@ -1,0 +1,92 @@
+------------------
+Forward Operator
+------------------
+[ModelNameStart]
+Waxman Smits
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	applyC1C2
+F		1e-3		1e4 		100 			1e2				1		0
+sigmaIF	1e-8		1			1e-5			0.5				1		0
+[ModelParametersEnd]
+
+[SampleSpecificsStart]
+sigmaW
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			(1/(mod(1)))*sigmaW+mod(2)
+[SyntheticDataCalculationEnd]
+------------------
+------------------
+
+ 
+------------------
+Starting inversion
+------------------
+2021-12-10_15-31-43
+------------------
+options:
+                 DataType: [6×1 double]
+                     Data: [6×1 double]
+                     Type: [6×1 double]
+                  UseData: [6×1 logical]
+                   Weight: [6×1 double]
+              description: {6×1 cell}
+                   sigmaW: [6×1 double]
+                   FOfile: {18×1 cell}
+                  FOinput: @(options,i)[options.sigmaW(i)]
+                       FO: {@(mod,sigmaW)(1/(mod(1)))*sigmaW+mod(2)}
+           transformation: 'Range'
+                ParaRange: [2×2 double]
+                  mod_ref: [2×1 double]
+    modelParameterWeights: [2×1 double]
+                     maxi: 10
+                     pert: 1.0000e-04
+                      tol: 1.0000e-05
+                  DataLog: 1
+              lambdaStore: 7.3158e-06
+
+
+Starting Gauss-Newton inversion
+Data residual norm:	4.40e+00
+Calculated lambda:	7.32e-06
+Objective function:	9.699107e+00
+
+Iteration: 1
+Line search: Step size	1.000000e+00
+Data norm:			4.151896e-02
+Model norm:			1.557499e-04
+Objective function:		4.167471e-02
+
+Iteration: 2
+Line search: Step size	1.000000e+00
+Data norm:			4.431898e-03
+Model norm:			1.635958e-04
+Objective function:		4.595493e-03
+
+Iteration: 3
+Line search: Step size	1.000000e+00
+Data norm:			4.431825e-03
+Model norm:			1.636035e-04
+Objective function:		4.595429e-03
+
+Iteration: 4
+Line search: Step size	1.000000e+00
+Data norm:			4.431825e-03
+Model norm:			1.636035e-04
+Objective function:		4.595429e-03
+
+Relative misfit change -4.718611e-15 is smaller than 1.000000e-05. Stopping.
+
+Data residual norm after 4 iterations:	9.41e-02
+Value of objective function:			4.595429e-03
+Lambda:							7.32e-06
+
+Inversion result:
+F	= 3.83e+00 +/- 2.42e-01
+sigmaIF	= 2.92e-03 +/- 2.27e-04
+ 
+2021-12-10_15-31-44
