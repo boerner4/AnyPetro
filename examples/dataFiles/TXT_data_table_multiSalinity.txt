@@ -1,7 +1,7 @@
 description	Type	UseData	Data	Weight	sigmaW
-realConductivity	1	WAHR	2.68E-03	1	1.00E-04
-realConductivity	1	WAHR	3.83E-03	1	1.50E-03
-realConductivity	1	WAHR	5.36E-03	1	1.09E-02
-realConductivity	1	WAHR	3.19E-02	1	1.06E-01
-realConductivity	1	WAHR	2.86E-01	1	1.02E+00
-realConductivity	1	WAHR	2.49E+00	1	1.03E+01
+realConductivity	1	1	2.68E-03	1	1.00E-04
+realConductivity	1	1	3.83E-03	1	1.50E-03
+realConductivity	1	1	5.36E-03	1	1.09E-02
+realConductivity	1	1	3.19E-02	1	1.06E-01
+realConductivity	1	1	2.86E-01	1	1.02E+00
+realConductivity	1	1	2.49E+00	1	1.03E+01
