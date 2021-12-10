@@ -1,3 +1,6 @@
+## Assignment of data files and forward operators
+See documentation for details of the examples.
+
 | TXT version                            | XLSX version                             | forward operator                    |
 |----------------------------------------|------------------------------------------|-------------------------------------|
 | TXT_data_table_multiSalinity.txt       | XLSX_data_table_multiSalinity.xlsx       | WaxmanSmits.txt                     |
