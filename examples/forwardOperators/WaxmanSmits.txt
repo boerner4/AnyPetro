@@ -1,0 +1,18 @@
+[ModelNameStart]
+Waxman Smits
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	applyC1C2
+F		1e-3		1e4 		100 			1e2				1		0
+sigmaIF	1e-8		1			1e-5			0.5				1		0
+[ModelParametersEnd]
+
+[SampleSpecificsStart]
+sigmaW
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			(1/(mod(1)))*sigmaW+mod(2)
+[SyntheticDataCalculationEnd]

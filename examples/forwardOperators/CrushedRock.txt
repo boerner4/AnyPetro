@@ -1,0 +1,34 @@
+[ModelNameStart]
+Crushed Rocks
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name		lowerBound	upperBound	startingValue	referenceValue	weight	ApplyC1C2
+zone		1e-6		1e-4		1e-5			2.0e-5			1		0
+zoneFac		0.1			5			3.0				2				1		0
+PhiIntra	5e-3		3e-1		0.01			0.02			1		0
+m			1.66		2.6			2.0				2				1		0
+phiFac		1			3			2.0				2				1		0
+ImSigma		4			14			12				10				1		0
+Splug		0.05		3			0.1				0.3				1		0
+[ModelParametersEnd]
+
+[AuxiliaryStatementsStart]
+theta_shell= @(mod,particleSize) min([1;(1-(1-mod(1)./(0.5*particleSize*1e-3)).^3)]) ;
+sigma_plug = @(mod,sigmaW,l,density) ( mod(3)        ^mod(4)).*(sigmaW) +(1+1i*l)*((10.^(-mod(6)))*mod(7)*       density*1e6* mod(3)        ^mod(4)*(1- mod(3)        )/ mod(3));
+sigma_shell= @(mod,sigmaW,l,density) ((mod(3)*mod(5))^mod(4)).*(sigmaW) +(1+1i*l)*((10.^(-mod(6)))*mod(7)*mod(2)*density*1e6*(mod(3)*mod(5))^mod(4)*(1-(mod(3)*mod(5)))/(mod(3)*mod(5)));
+sigma_ep   = @(sigma_c,sigma_a,theta_shell) sigma_c*((2*theta_shell*sigma_c+(3-2*theta_shell)*sigma_a)/((3-theta_shell)*sigma_c+theta_shell*sigma_a));
+F          = @(sigma_eff,sigma_w,sigma_i,PhiinterNeu) ((sigma_i-sigma_eff)/(sigma_i-sigma_w))*((sigma_w/sigma_eff).^(1/3))-PhiinterNeu;
+[AuxiliaryStatementsEnd]
+
+[SampleSpecificsStart]
+particleSize,PhiinterNeu,density,sigmaW,l
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(fsolve(@(x) F(x,sigmaW,sigma_ep(sigma_shell(mod,sigmaW,l,density),sigma_plug(mod,sigmaW,l,density),theta_shell(mod,particleSize)),PhiinterNeu),1e-3+1i*1e-5,optimset('Display','off')))
+2			imag(fsolve(@(x) F(x,sigmaW,sigma_ep(sigma_shell(mod,sigmaW,l,density),sigma_plug(mod,sigmaW,l,density),theta_shell(mod,particleSize)),PhiinterNeu),1e-3+1i*1e-5,optimset('Display','off')))
+3			theta_shell(mod,particleSize)*mod(2)*mod(7) + (1-theta_shell(mod,particleSize))*mod(7)
+4			theta_shell(mod,particleSize)*mod(5)*mod(3) + (1-theta_shell(mod,particleSize))*mod(3)
+[SyntheticDataCalculationEnd]

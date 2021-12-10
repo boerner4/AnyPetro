@@ -1,0 +1,58 @@
+[ModelNameStart]
+Debye Decomposition
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	ApplyC1C2
+rho0	1e-3		1e4			5e2				1e2				10		0
+m01		1e-6		1			1e-3			1e-3			1		1
+m02		1e-6		1			1e-3			1e-3			1		1
+m03		1e-6		1			1e-3			1e-3			1		1
+m04		1e-6		1			1e-3			1e-3			1		1
+m05		1e-6		1			1e-3			1e-3			1		1
+m06		1e-6		1			1e-3			1e-3			1		1
+m07		1e-6		1			1e-3			1e-3			1		1
+m08		1e-6		1			1e-3			1e-3			1		1
+m09		1e-6		1			1e-3			1e-3			1		1
+m10		1e-6		1			1e-3			1e-3			1		1
+m11		1e-6		1			1e-3			1e-3			1		1
+m12		1e-6		1			1e-3			1e-3			1		1
+m13		1e-6		1			1e-3			1e-3			1		1
+m14		1e-6		1			1e-3			1e-3			1		1
+m15		1e-6		1			1e-3			1e-3			1		1
+m16		1e-6		1			1e-3			1e-3			1		1
+m17		1e-6		1			1e-3			1e-3			1		1
+m18		1e-6		1			1e-3			1e-3			1		1
+m19		1e-6		1			1e-3			1e-3			1		1
+m20		1e-6		1			1e-3			1e-3			1		1
+m21		1e-6		1			1e-3			1e-3			1		1
+m22		1e-6		1			1e-3			1e-3			1		1
+m23		1e-6		1			1e-3			1e-3			1		1
+m24		1e-6		1			1e-3			1e-3			1		1
+m25		1e-6		1			1e-3			1e-3			1		1
+m26		1e-6		1			1e-3			1e-3			1		1
+m27		1e-6		1			1e-3			1e-3			1		1
+m28		1e-6		1			1e-3			1e-3			1		1
+m29		1e-6		1			1e-3			1e-3			1		1
+m30		1e-6		1			1e-3			1e-3			1		1
+[ModelParametersEnd]
+
+[AuxiliaryStatementsStart]
+nTau   = 30;
+limTau = log10([1e-5 1e4]);
+tau    = logspace(limTau(1),limTau(2),nTau)';
+[AuxiliaryStatementsEnd]
+
+[AdditionalInputStart]
+tau
+[AdditionalInputEnd]
+
+[SampleSpecificsStart]
+frequency
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(1./(mod(1).*(1-sum(mod(2:end).*(1-(1./(1+1i*2*pi*frequency*tau)))))))
+2			imag(1./(mod(1).*(1-sum(mod(2:end).*(1-(1./(1+1i*2*pi*frequency*tau)))))))
+[SyntheticDataCalculationEnd]

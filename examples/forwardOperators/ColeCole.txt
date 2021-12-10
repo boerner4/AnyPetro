@@ -1,0 +1,21 @@
+[ModelNameStart]
+Cole Cole
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name	lowerBound	upperBound	startingValue	referenceValue	weight	applyC1C2
+rho0	1e-3		1e4 		5e2 			1e2				1	0
+m		1e-6		1			0.5				0.5				1	0
+tau		1e-7		1e6 		1				1				1	0
+c		1e-6		1			0.5				0.5				1	0
+[ModelParametersEnd]
+
+[SampleSpecificsStart]
+frequency
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			real(1/(mod(1)*(1-mod(2)*(1-1/(1+(1i*2*pi*frequency*mod(3))^mod(4))))))
+2			imag(1/(mod(1)*(1-mod(2)*(1-1/(1+(1i*2*pi*frequency*mod(3))^mod(4))))))
+[SyntheticDataCalculationEnd]

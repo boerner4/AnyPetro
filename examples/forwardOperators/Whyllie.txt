@@ -1,0 +1,24 @@
+[ModelNameStart]
+Whyllie's equation
+[ModelNameEnd]
+
+[ModelParametersStart]
+Name		lowerBound	upperBound	startingValue	referenceValue	weight	applyC1C2
+vPmatrix	0			8000 		7500 			6000			1		0
+vPfluid		0			8000		500 			1000			1		0
+[ModelParametersEnd]
+
+[SampleSpecificsStart]
+porosity
+[SampleSpecificsEnd]
+
+[SyntheticDataCalculationStart]
+DataType	Expression
+1			1/((1-porosity)*(1/mod(1)) + porosity*(1/mod(2)))
+[SyntheticDataCalculationEnd]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+- use data directly (un-check "use log10 of data" check box)
