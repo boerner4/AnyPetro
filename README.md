@@ -6,4 +6,4 @@ There are two ways for installing AnyPetro. If you are a MATLAB user, it is reco
 
 ## Citation:
 
-Börner, J.H. & Herdegen, V., 2022. AnyPetro - universal  parameter fitting tool for petrophysical laboratory data, GFZ data services, https://doi.org/10.5880/fidgeo.2021.039.
+Börner, Jana H.; Herdegen, Volker (2022): AnyPetro - Universal parameter fitting tool for petrophysical laboratory data. V. 1.0. GFZ Data Services. https://doi.org/10.5880/fidgeo.2021.039.
